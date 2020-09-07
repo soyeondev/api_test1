@@ -10,11 +10,11 @@
 <form id="querySubmit" action="/chartjstest" method="POST">
 	dimensions: <input type="text" name="demen"/></br>
 	metrics: <input type="text" name="metr"/></br>
-	startDate: <input type="Date" id= "startDate" name="startDate"/></br>
-	endDate: <input type="Date" id= "endDate" name="endDate"/></br>
-	<input type="hidden" id="postStartDate"/></br>
-	<input type="hidden" id="postEndDate" /></br>
-	<input type="button" onclick="button1_click1();" value="등록">
+	startDate: <input type="Date" id= "startDate"/></br>
+	endDate: <input type="Date" id= "endDate"/></br>
+	<input type="hidden" id="postStartDate" name="startDate"/></br>
+	<input type="hidden" id="postEndDate" name="endDate"/></br>
+	<input type="button" onclick="button1_click();" value="등록">
 </form>
 <script type="text/javascript">
 	function button1_click(){
@@ -35,10 +35,6 @@
 		
 		console.log(yr+month+day);
 		
-		document.getElementById("querySubmit").submit();
-	}
-	
-	function button1_click1(){
 		document.getElementById("querySubmit").submit();
 	}
 

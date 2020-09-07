@@ -33,7 +33,7 @@ import com.google.api.services.analyticsreporting.v4.model.ReportRequest;
 import com.google.api.services.analyticsreporting.v4.model.ReportRow;
 import com.google.api.services.analyticsreporting.v4.model.Segment;
 
-public class HelloAnalyticsReporting {
+public class HelloAnalyticsReporting2 {
   private static final String APPLICATION_NAME = "Hello Analytics Reporting";
   private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
   private static final String KEY_FILE_LOCATION = "C:\\keyfile/elite-coral-288101-c9fb696d8028.json";
@@ -85,39 +85,41 @@ public class HelloAnalyticsReporting {
 	  
 	ArrayList list = new ArrayList(); 
 	  
+//	SimpleDateFormat transFormStart = new SimpleDateFormat("yyyyMMdd");
+//    Date toStart = transFormStart.parse(startDate);
+//	SimpleDateFormat transForm1Start = new SimpleDateFormat("yyyy-MM-dd");
+//	String toTransStart = transForm1Start.format(toStart);
 	SimpleDateFormat preStartDate = new SimpleDateFormat("yyyy-MM-dd");
-	Date postStartDate = preStartDate.parse(startDate);
-
+	Date postDateStart = preStartDate.parse(startDate);
+//	
+//	SimpleDateFormat transFormEnd = new SimpleDateFormat("yyyyMMdd");
+//    Date to = transFormEnd.parse(endDate);
+//	SimpleDateFormat transForm1End = new SimpleDateFormat("yyyy-MM-dd");
+//	String toTransEnd = transForm1End.format(to);
 	SimpleDateFormat preEndDate = new SimpleDateFormat("yyyy-MM-dd");
-	Date postEndDate = preEndDate.parse(endDate);
-	
-	SimpleDateFormat jsonDateFormat = new SimpleDateFormat("yyyyMMdd");
+	Date postDateEnd = preEndDate.parse(endDate);
 
-	Calendar startC = Calendar.getInstance();
-	Calendar endC = Calendar.getInstance();
-	startC.setTime(postStartDate);
-	endC.setTime(postEndDate);
-	long diff = postEndDate.getTime() - postStartDate.getTime();
-	long diffDay = (diff / (1000 * 60 * 60 * 24));
+//	Calendar startC = Calendar.getInstance();
+//	Calendar endC = Calendar.getInstance();
+//	startC.setTime(postDateStart);
+//	endC.setTime(postDateEnd);
+//	long diff = postDateEnd.getTime() - postDateStart.getTime();
+//	long diffDay = (diff / (1000 * 60 * 60 * 24));
+//	Date arr[] = new Date[100];
+//	arr[0] = startC.getTime();
+//	
+//	for(int i = 0; i < diffDay; i++) {
+//		startC.add(Calendar.DATE, 1);
+//		arr[i] = startC.getTime();
+//		System.out.println(arr[i].getTime());
+//	}
 	
-	//String arr[] = new String[(int) diffDay];
-	List<String> arr = new ArrayList<String>();
-	//arr[0] = preStartDate.format(startC.getTime());
-	String strStart = jsonDateFormat.format(startC.getTime());
-	arr.add(strStart);
-	for(int i = 1; i < diffDay; i++) {
-		startC.add(Calendar.DATE, 1);
-		//arr[i] = preStartDate.format(arrDate);
-		arr.add(jsonDateFormat.format(startC.getTime()).toString());
-		System.out.println(arr.get(i));
-		
-	}
 	// Create the DateRange object.
     DateRange dateRange = new DateRange();
-    //dateRange.setStartDate("2020-08-02");
-    dateRange.setStartDate(startDate);
-    //dateRange.setEndDate("today");
-    dateRange.setEndDate(endDate);
+    dateRange.setStartDate("2020-08-02");
+    //dateRange.setStartDate(toTransStart);
+    dateRange.setEndDate("today");
+    //dateRange.setEndDate(toTransEnd);
 
     // Create the Metrics object.
 	/*
@@ -162,7 +164,7 @@ public class HelloAnalyticsReporting {
     GetReportsResponse response = service.reports().batchGet(getReport).execute();
 
     list.add(response);
-    list.add(arr);
+    //list.add(arr);
     System.out.println(list);
     // Return the response.
     return list;
@@ -182,7 +184,6 @@ public class HelloAnalyticsReporting {
 
       if (rows == null) {
          System.out.println("No data found for " + VIEW_ID);
-         return;
       }
 
       System.out.println(response);
