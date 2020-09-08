@@ -48,7 +48,6 @@ console.log(userArr);
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
-        //labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
         labels: dateArr,
         datasets: [{
             label: 'User',
@@ -110,8 +109,7 @@ function queryReportsCare() {
           ],
           dimensions: [
           	{
-	            	//name: 'ga:userType'
-	            	name: 'ga:date'
+	          name: 'ga:date'
           	}
            ]
         }

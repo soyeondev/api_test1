@@ -51,7 +51,7 @@ public class HelloAnalyticsReporting2 {
 
   /**
    * Initializes an Analytics Reporting API V4 service object.
-   *
+   * 
    * @return An authorized Analytics Reporting API V4 service object.
    * @throws IOException
    * @throws GeneralSecurityException

@@ -37,7 +37,7 @@ import com.google.api.services.analyticsreporting.v4.model.ReportRequest;
 import com.google.api.services.analyticsreporting.v4.model.ReportRow;
 import com.google.api.services.analyticsreporting.v4.model.Segment;
 
-public class HelloAnalyticsReporting {
+public class HelloAnalyticsReporting4 {
   private static final String APPLICATION_NAME = "Hello Analytics Reporting";
   private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
   private static final String KEY_FILE_LOCATION = "C:\\keyfile/elite-coral-288101-af14671be629.json";
@@ -82,8 +82,9 @@ public class HelloAnalyticsReporting {
    * @throws IOException
    * @throws ParseException 
    */
-   public static ArrayList getReport(AnalyticsReporting service, String startDate, String endDate) throws IOException, ParseException {
-  
+   public static ArrayList getReport(AnalyticsReporting service, String demen, String metr, String startDate, String endDate) throws IOException, ParseException {
+	//public static ArrayList getReport(AnalyticsReporting service, String startDate, String endDate) throws IOException, ParseException {
+	  
 	ArrayList list = new ArrayList();
 
 	SimpleDateFormat preStartDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -153,6 +154,14 @@ public class HelloAnalyticsReporting {
     Metric users_new = new Metric().setExpression("ga:users").setAlias("users");
     Dimension date_new = new Dimension().setName("ga:date");
 	Dimension userType_re = new Dimension().setName("ga:userType");
+    
+    /*ReportRequest request_new = new ReportRequest()
+            .setViewId(VIEW_ID)
+            .setDateRanges(Arrays.asList(dateRange))
+            .setMetrics(Arrays.asList(users))
+            .setDimensions(Arrays.asList(date, userType));*/
+
+
 	
     // 요청 리스트
     ArrayList<ReportRequest> requests = new ArrayList<ReportRequest>();
@@ -166,7 +175,8 @@ public class HelloAnalyticsReporting {
     // Call the batchGet method.
     GetReportsResponse response = service.reports().batchGet(getReport).execute();
     
-    Report repot = response.getReports().get(1);	
+    Report repot = response.getReports().get(1);
+    //System.out.println("ds:"+repot.getData().getRows().get(0).getDimensions().get(1));    	
 
     ObjectMapper obj = new ObjectMapper();
 
@@ -175,6 +185,8 @@ public class HelloAnalyticsReporting {
 	
     for(int i = 0; i < repot.getData().getRows().size(); i++) {
     	String visitor = repot.getData().getRows().get(i).getDimensions().get(1);
+    	//System.out.println(repot.getData().getRows().get(i).getDimensions().get(1));
+    	//System.out.println(repot.getData().getRows().get(i).getDimensions().get(0));
     	String revisitcount = repot.getData().getRows().get(i).getMetrics().get(0).getValues().get(0);
     	
     	if(visitor.equals("Returning Visitor")) {
@@ -185,6 +197,9 @@ public class HelloAnalyticsReporting {
     		new_visit_map.put(repot.getData().getRows().get(i).getDimensions().get(0), revisitcount);    		
     	}
     }
+    
+    System.out.println(re_visit_map);
+    System.out.println(new_visit_map);
     
     list.add(response);
     list.add(arr);
@@ -208,6 +223,7 @@ public class HelloAnalyticsReporting {
 
   /**
    * Parses and prints the Analytics Reporting API V4 response.
+   *
    * @param response An Analytics Reporting API V4 response.
    */
   public static void printResponse(GetReportsResponse response) {

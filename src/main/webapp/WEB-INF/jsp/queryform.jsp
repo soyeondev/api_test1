@@ -8,37 +8,12 @@
 </head>
 <body>
 <form id="querySubmit" action="/chartjstest" method="POST">
-	dimensions: <input type="text" name="demen"/></br>
-	metrics: <input type="text" name="metr"/></br>
 	startDate: <input type="Date" id= "startDate" name="startDate"/></br>
 	endDate: <input type="Date" id= "endDate" name="endDate"/></br>
-	<input type="hidden" id="postStartDate"/></br>
-	<input type="hidden" id="postEndDate" /></br>
-	<input type="button" onclick="button1_click1();" value="등록">
+	<input type="button" onclick="button1_click();" value="등록">
 </form>
 <script type="text/javascript">
 	function button1_click(){
-		var startD = document.getElementById("startDate").value;
-		var yr = startD.substring(0, 4);
-		var month = startD.substring(5, 7);
-		var day = startD.substring(8, 10);
-		document.getElementById("postStartDate").value = yr+month+day;
-		
-		console.log(yr+month+day);
-		
-		var endD = document.getElementById("endDate").value;
-		var yr = endD.substring(0, 4);
-		var month = endD.substring(5, 7);
-		var day = endD.substring(8, 10);
-		var endDateStr = yr+month+day;
-		document.getElementById("postEndDate").value = yr+month+day;
-		
-		console.log(yr+month+day);
-		
-		document.getElementById("querySubmit").submit();
-	}
-	
-	function button1_click1(){
 		document.getElementById("querySubmit").submit();
 	}
 

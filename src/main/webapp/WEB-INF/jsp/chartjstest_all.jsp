@@ -26,11 +26,6 @@
 <h3>신규 방문자수</h3>
     <canvas id="myChartNewUser"></canvas>
 </div>
-<select name="userType" id="userType" onchange="changeSelect()">
-	<option value="사용자 수" selected="selected">사용자 수</option>
-	<option value="재방문자 수">재방문자 수</option>
-	<option value="신규방문자 수">신규방문자 수</option>
-</select>
 
 <script>
 var dateArr = [];
@@ -91,18 +86,9 @@ for(var i = 0; i < preDate.length; i++){
 	}
 }
 console.log(newUserArr);
-
-
-function changeSelect(){
-	var userT = document.getElementById('userType');
-	var selectVal = userT.options[userT.selectedIndex].value;
-	var selectTxt = userT.options[userT.selectedIndex].text;
-	alert(selectVal);
 	
-}
-
-
-/*- Chart쨍짝 쨩첵쩌쨘��쨍챕쩌짯, 
+/*
+- Chart쨍짝 쨩첵쩌쨘��쨍챕쩌짯, 
 - ctx쨍짝 �쨔쨔첩�째 argument쨌� 쨀�째���째챠, 
 - 쨉�쨔첩�째 argument쨌� 짹�쨍짼�쨩 짹�쨍짹쨋짠 ��쩔채�� 쩔채쩌�쨉챕�쨩 쨍챨쨉� 쨀�째���쨈�쨈�. 
 */

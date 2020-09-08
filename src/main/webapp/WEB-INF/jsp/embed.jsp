@@ -122,17 +122,11 @@ gapi.analytics.ready(function() {
               }
             ],
             metrics: [
-              /* {
-                expression: 'ga:sessions'
-              }, */
               {
                 expression: 'ga:users'
               }
             ],
             dimensions: [
-            	/* {
-	            	name: 'ga:userType'        		
-            	} */
             	{
             		name: 'ga:date'
             	}
@@ -145,11 +139,6 @@ gapi.analytics.ready(function() {
 
   function displayResults(response) {
     var formattedJson = JSON.stringify(response.result, null, 2);
-    const json = '{"result":true, "count":42}';
-    console.log(response);
-    console.log(formattedJson);
-    //console.log(response.result.reports[0].data.rows[0].metrics.values());
-
     var preNewVisitor = response.result.reports[0].data.rows[0].metrics.values();
     var preReVisitor = response.result.reports[0].data.rows[1].metrics.values();
     
